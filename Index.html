@@ -28,9 +28,14 @@ a:hover{ color:#7DF0FF; }
 .contact-card:hover{ border-color:rgba(34,211,238,.45); background:rgba(34,211,238,.05); }
 
 .lang-switch{ display:flex; align-items:center; gap:2px; padding:3px; border-radius:7px; border:1px solid rgba(255,255,255,.09); background:rgba(255,255,255,.02); }
-.lang-btn{ font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:.06em; color:#8A93A6; background:none; border:none; border-radius:5px; padding:5px 9px; cursor:pointer; }
+.lang-btn{ font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:.06em; color:#8A93A6; background:none; border:none; border-radius:5px; padding:7px 9px; cursor:pointer; }
 .lang-btn:hover{ color:#E7EAF0; }
 .lang-btn[aria-pressed="true"]{ background:rgba(34,211,238,.12); color:var(--accent,#22D3EE); }
+
+.hero-gradient{ background:linear-gradient(100deg,#E7EAF0 8%,#5FC8F5 48%,#22D3EE 82%); -webkit-background-clip:text; background-clip:text; color:transparent; }
+.inline-link{ color:var(--accent,#22D3EE); border-bottom:1px solid rgba(34,211,238,.3); }
+.inline-code{ font-family:'JetBrains Mono',monospace; font-size:14px; color:#C9D1DE; font-style:normal; }
+.visually-hidden{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
 
 [data-reveal]{ opacity:1; transform:none; }
 .js-reveal [data-reveal]{ opacity:0; transform:translateY(20px); transition:opacity .7s cubic-bezier(.22,.61,.36,1), transform .7s cubic-bezier(.22,.61,.36,1); }
@@ -54,10 +59,11 @@ a:hover{ color:#7DF0FF; }
         <a class="nav-link" href="#proyectos" data-i18n="nav.proyectos">02 proyectos</a>
         <a class="nav-link" href="#experiencia" data-i18n="nav.experiencia">03 experiencia</a>
         <a class="nav-link" href="#contacto" data-i18n="nav.contacto">04 contacto</a>
-        <div class="lang-switch" role="group" aria-label="Idioma / Language">
-          <button type="button" class="lang-btn" data-lang-btn="es" aria-pressed="true">ES</button>
-          <button type="button" class="lang-btn" data-lang-btn="en" aria-pressed="false">EN</button>
+        <div class="lang-switch" role="group" data-i18n-aria="langSwitch.groupLabel" aria-label="Selector de idioma">
+          <button type="button" class="lang-btn" data-lang-btn="es" lang="es" aria-label="Español" aria-pressed="true">ES</button>
+          <button type="button" class="lang-btn" data-lang-btn="en" lang="en" aria-label="English" aria-pressed="false">EN</button>
         </div>
+        <span id="lang-announcer" class="visually-hidden" role="status" aria-live="polite"></span>
       </div>
     </nav>
   </header>
@@ -69,9 +75,9 @@ a:hover{ color:#7DF0FF; }
       <span data-i18n="hero.whoami">whoami</span>
       <span style="display:inline-block; width:9px; height:17px; background:var(--accent,#22D3EE); animation:blink 1.1s step-end infinite;"></span>
     </div>
-    <h1 style="margin:0; font-size:clamp(48px,8vw,104px); font-weight:700; letter-spacing:-.045em; line-height:.95;" data-i18n-html="hero.title">
-      Eneko —<br>
-      <span style="background:linear-gradient(100deg,#E7EAF0 8%,#5FC8F5 48%,#22D3EE 82%); -webkit-background-clip:text; background-clip:text; color:transparent;">software de verdad,<br>bien construido.</span>
+    <h1 style="margin:0; font-size:clamp(48px,8vw,104px); font-weight:700; letter-spacing:-.045em; line-height:.95;">
+      <span data-i18n="hero.titleLine1">Eneko —</span><br>
+      <span class="hero-gradient"><span data-i18n="hero.titleGradient1">software de verdad,</span><br><span data-i18n="hero.titleGradient2">bien construido.</span></span>
     </h1>
     <p style="margin:34px 0 0; max-width:620px; font-size:19px; line-height:1.65; color:#9BA4B5;" data-i18n="hero.subtitle">
       Desarrollador en Computershare, afincado en Bristol. Construyo aplicaciones web corporativas con .NET y React — arquitectura limpia, APIs cuidadas y frontends que no estorban.
@@ -100,9 +106,7 @@ a:hover{ color:#7DF0FF; }
         <p style="margin:0 0 20px; font-size:18px; line-height:1.7; color:#B4BCC9; text-wrap:pretty;" data-i18n="about.p1">
           Trabajo en aplicaciones web corporativas: dominios con reglas de verdad, APIs mínimas bien tipadas y una capa de datos que aguanta. Me interesa la parte aburrida y decisiva — límites entre capas, validación, observabilidad, despliegues repetibles.
         </p>
-        <p style="margin:0; font-size:18px; line-height:1.7; color:#B4BCC9; text-wrap:pretty;" data-i18n-html="about.p2">
-          Fuera del trabajo todo mi código vive en la organización de GitHub <a href="https://github.com/Enekoiza" style="color:var(--accent,#22D3EE); border-bottom:1px solid rgba(34,211,238,.3);">Enekoiza</a>, con los paquetes NuGet compartidos publicados en GitHub Packages. Últimamente, observabilidad propia y apps iOS en SwiftUI.
-        </p>
+        <p style="margin:0; font-size:18px; line-height:1.7; color:#B4BCC9; text-wrap:pretty;"><span data-i18n="about.p2Before">Fuera del trabajo todo mi código vive en la organización de GitHub </span><a href="https://github.com/Enekoiza" class="inline-link">Enekoiza</a><span data-i18n="about.p2After">, con los paquetes NuGet compartidos publicados en GitHub Packages. Últimamente, observabilidad propia y apps iOS en SwiftUI.</span></p>
       </div>
       <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:14px;">
         <div style="border:1px solid rgba(255,255,255,.08); border-radius:12px; padding:20px; background:linear-gradient(180deg, rgba(30,111,217,.07), rgba(255,255,255,.01));">
@@ -167,7 +171,7 @@ a:hover{ color:#7DF0FF; }
           </div>
           <div style="position:relative; padding:26px;">
             <h3 style="margin:0 0 12px; font-size:24px; font-weight:700; letter-spacing:-.025em;">Eniflare</h3>
-            <p style="margin:0 0 22px; font-size:15.5px; line-height:1.65; color:#9BA4B5; text-wrap:pretty;" data-i18n-html="projects.eniflare.desc">Plataforma personal de observabilidad: agregación de logs y errores con ingesta desacoplada mediante <span style="font-family:'JetBrains Mono',monospace; font-size:14px; color:#C9D1DE;">Channel&lt;T&gt;</span> y un sink de Serilog publicado como paquete NuGet multi-framework.</p>
+            <p style="margin:0 0 22px; font-size:15.5px; line-height:1.65; color:#9BA4B5; text-wrap:pretty;"><span data-i18n="projects.eniflare.descBefore">Plataforma personal de observabilidad: agregación de logs y errores con ingesta desacoplada mediante </span><code class="inline-code">Channel&lt;T&gt;</code><span data-i18n="projects.eniflare.descAfter"> y un sink de Serilog publicado como paquete NuGet multi-framework.</span></p>
             <div style="display:flex; flex-wrap:wrap; gap:7px; margin-bottom:24px; font-family:'JetBrains Mono',monospace; font-size:11.5px; color:#8A93A6;">
               <span style="padding:4px 9px; border-radius:5px; border:1px solid rgba(255,255,255,.09); white-space:nowrap;">.NET 10</span>
               <span style="padding:4px 9px; border-radius:5px; border:1px solid rgba(255,255,255,.09); white-space:nowrap;">React 19</span>
@@ -239,7 +243,7 @@ a:hover{ color:#7DF0FF; }
         <span style="position:absolute; left:-36px; top:7px; width:11px; height:11px; border-radius:50%; background:var(--accent,#22D3EE); box-shadow:0 0 0 4px rgba(34,211,238,.12);"></span>
         <div style="font-family:'JetBrains Mono',monospace; font-size:12.5px; color:var(--accent,#22D3EE); letter-spacing:.06em; margin-bottom:8px;" data-i18n="experience.current.dates">20XX — actualidad</div>
         <h3 style="margin:0 0 6px; font-size:21px; font-weight:600; letter-spacing:-.02em;" data-i18n="experience.current.role">Puesto actual</h3>
-        <div style="font-family:'JetBrains Mono',monospace; font-size:13px; color:#8A93A6; margin-bottom:10px;">Computershare · Bristol, UK</div>
+        <div style="font-family:'JetBrains Mono',monospace; font-size:13px; color:#8A93A6; margin-bottom:10px;" data-i18n="experience.current.place">Computershare · Bristol, Reino Unido</div>
         <p style="margin:0; font-size:15.5px; line-height:1.65; color:#9BA4B5;" data-i18n="experience.current.desc">Descripción breve de responsabilidades y logros. Sustituye este texto.</p>
       </div>
       <div style="position:relative;">
@@ -293,10 +297,207 @@ a:hover{ color:#7DF0FF; }
 
   <footer style="position:relative; max-width:1120px; margin:0 auto; padding:36px 28px 56px; display:flex; flex-wrap:wrap; gap:12px; justify-content:space-between; border-top:1px solid rgba(255,255,255,.06); font-family:'JetBrains Mono',monospace; font-size:12px; color:#4E5665;">
     <span>© <span id="year">2026</span> Eneko</span>
-    <span data-i18n="footer.location">Bristol, UK · 51.45°N, 2.59°W</span>
+    <span data-i18n="footer.location">Bristol, Reino Unido · 51,45°N, 2,59°O</span>
   </footer>
 </div>
 
+<script>
+(() => {
+  'use strict';
+
+  // --- i18n: español (ES) / English (en-GB) — inline para evitar el flash de
+  // idioma incorrecto mientras se descarga main.js. ---
+  const I18N = {
+    es: {
+      'meta.title': 'Eneko — software de verdad, bien construido',
+      'meta.description': 'Desarrollador en Computershare, afincado en Bristol. Aplicaciones web corporativas con .NET y React.',
+      'nav.sobreMi': '01 sobre-mí',
+      'nav.proyectos': '02 proyectos',
+      'nav.experiencia': '03 experiencia',
+      'nav.contacto': '04 contacto',
+      'langSwitch.groupLabel': 'Selector de idioma',
+      'langSwitch.announced': 'Idioma cambiado a español',
+      'hero.whoami': 'whoami',
+      'hero.titleLine1': 'Eneko —',
+      'hero.titleGradient1': 'software de verdad,',
+      'hero.titleGradient2': 'bien construido.',
+      'hero.subtitle': 'Desarrollador en Computershare, afincado en Bristol. Construyo aplicaciones web corporativas con .NET y React — arquitectura limpia, APIs cuidadas y frontends que no estorban.',
+      'hero.ctaProjects': 'Ver proyectos',
+      'hero.ctaContact': 'Contacto',
+      'about.heading': 'Sobre mí',
+      'about.p1': 'Trabajo en aplicaciones web corporativas: dominios con reglas de verdad, APIs mínimas bien tipadas y una capa de datos que aguanta. Me interesa la parte aburrida y decisiva — límites entre capas, validación, observabilidad, despliegues repetibles.',
+      'about.p2Before': 'Fuera del trabajo todo mi código vive en la organización de GitHub ',
+      'about.p2After': ', con los paquetes NuGet compartidos publicados en GitHub Packages. Últimamente, observabilidad propia y apps iOS en SwiftUI.',
+      'about.backend': 'Backend',
+      'about.frontend': 'Frontend',
+      'about.mobile': 'Mobile',
+      'about.devops': 'DevOps',
+      'projects.heading': 'Proyectos',
+      'projects.eniflare.descBefore': 'Plataforma personal de observabilidad: agregación de logs y errores con ingesta desacoplada mediante ',
+      'projects.eniflare.descAfter': ' y un sink de Serilog publicado como paquete NuGet multi-framework.',
+      'projects.viewRepo': 'ver repo',
+      'projects.flatHolm.desc': 'Registro de reavistamientos de gaviotas anilladas en la isla de Flat Holm. Mapa interactivo en React + Leaflet sobre un backend .NET 10 con Clean Architecture.',
+      'projects.flyway.desc': 'App de avistamiento de aves: cliente iOS nativo en Swift/SwiftUI y backend .NET con generación propia de teselas de mapa vía Planetiler y PMTiles.',
+      'experience.heading': 'Experiencia',
+      'experience.current.dates': '20XX — actualidad',
+      'experience.current.role': 'Puesto actual',
+      'experience.current.place': 'Computershare · Bristol, Reino Unido',
+      'experience.current.desc': 'Descripción breve de responsabilidades y logros. Sustituye este texto.',
+      'experience.prev1.dates': '20XX — 20XX',
+      'experience.prev1.role': 'Puesto anterior',
+      'experience.prev1.place': 'Empresa · Ciudad',
+      'experience.prev1.desc': 'Descripción breve de responsabilidades y logros. Sustituye este texto.',
+      'experience.prev2.dates': '20XX — 20XX',
+      'experience.prev2.role': 'Formación / primer puesto',
+      'experience.prev2.place': 'Institución · Ciudad',
+      'experience.prev2.desc': 'Descripción breve. Sustituye este texto.',
+      'contact.heading': 'Contacto',
+      'contact.intro': 'Abierto a hablar de proyectos .NET, React o iOS. La vía más rápida es el email.',
+      'contact.email': 'Email',
+      'footer.location': 'Bristol, Reino Unido · 51,45°N, 2,59°O'
+    },
+    en: {
+      'meta.title': 'Eneko — real software, properly built',
+      'meta.description': 'Developer at Computershare, based in Bristol. Corporate web applications with .NET and React.',
+      'nav.sobreMi': '01 about',
+      'nav.proyectos': '02 projects',
+      'nav.experiencia': '03 experience',
+      'nav.contacto': '04 contact',
+      'langSwitch.groupLabel': 'Language selector',
+      'langSwitch.announced': 'Language changed to English',
+      'hero.whoami': 'whoami',
+      'hero.titleLine1': 'Eneko —',
+      'hero.titleGradient1': 'real software,',
+      'hero.titleGradient2': 'properly built.',
+      'hero.subtitle': 'Developer at Computershare, based in Bristol. I build corporate web applications with .NET and React — clean architecture, well-crafted APIs and frontends that stay out of the way.',
+      'hero.ctaProjects': 'View projects',
+      'hero.ctaContact': 'Contact',
+      'about.heading': 'About me',
+      'about.p1': 'I work on corporate web applications: domains with real business rules, small well-typed APIs and a data layer that holds up. I care about the boring, decisive part — boundaries between layers, validation, observability, repeatable deployments.',
+      'about.p2Before': 'Outside work all my code lives in the GitHub organisation ',
+      'about.p2After': ', with shared NuGet packages published to GitHub Packages. Lately, my own observability tooling and iOS apps in SwiftUI.',
+      'about.backend': 'Backend',
+      'about.frontend': 'Frontend',
+      'about.mobile': 'Mobile',
+      'about.devops': 'DevOps',
+      'projects.heading': 'Projects',
+      'projects.eniflare.descBefore': 'A personal observability platform: log and error aggregation with decoupled ingestion via ',
+      'projects.eniflare.descAfter': ' and a Serilog sink published as a multi-framework NuGet package.',
+      'projects.viewRepo': 'view repo',
+      'projects.flatHolm.desc': 'A sightings log for ringed gulls on Flat Holm island. An interactive React + Leaflet map on top of a .NET 10 backend with Clean Architecture.',
+      'projects.flyway.desc': 'A bird-watching app: a native iOS client in Swift/SwiftUI and a .NET backend with its own map tile generation via Planetiler and PMTiles.',
+      'experience.heading': 'Experience',
+      'experience.current.dates': '20XX — present',
+      'experience.current.role': 'Current role',
+      'experience.current.place': 'Computershare · Bristol, UK',
+      'experience.current.desc': 'Brief description of responsibilities and achievements. Replace this text.',
+      'experience.prev1.dates': '20XX — 20XX',
+      'experience.prev1.role': 'Previous role',
+      'experience.prev1.place': 'Company · City',
+      'experience.prev1.desc': 'Brief description of responsibilities and achievements. Replace this text.',
+      'experience.prev2.dates': '20XX — 20XX',
+      'experience.prev2.role': 'Education / first role',
+      'experience.prev2.place': 'Institution · City',
+      'experience.prev2.desc': 'Brief description. Replace this text.',
+      'contact.heading': 'Contact',
+      'contact.intro': 'Happy to talk about .NET, React or iOS projects. Email is the fastest way to reach me.',
+      'contact.email': 'Email',
+      'footer.location': 'Bristol, UK · 51.45°N, 2.59°W'
+    }
+  };
+
+  const LANG_STORAGE_KEY = 'lang';
+
+  function readStoredLang() {
+    try {
+      return localStorage.getItem(LANG_STORAGE_KEY);
+    } catch (e) {
+      return null; // localStorage bloqueado (cookies desactivadas, contexto file://, etc.)
+    }
+  }
+
+  function writeStoredLang(lang) {
+    try {
+      localStorage.setItem(LANG_STORAGE_KEY, lang);
+    } catch (e) {
+      // Sin persistencia disponible: el idioma seguirá funcionando, solo no se recordará.
+    }
+  }
+
+  function getQueryLang() {
+    try {
+      const q = new URLSearchParams(window.location.search).get('lang');
+      return q === 'es' || q === 'en' ? q : null;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function detectBrowserLang() {
+    const langs = navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || ''];
+    for (const l of langs) {
+      if (typeof l === 'string' && l.toLowerCase().startsWith('es')) return 'es';
+    }
+    return 'en';
+  }
+
+  function resolveInitialLanguage() {
+    const stored = readStoredLang();
+    return getQueryLang() || (stored === 'es' || stored === 'en' ? stored : null) || detectBrowserLang();
+  }
+
+  const langButtons = document.querySelectorAll('[data-lang-btn]');
+  const announcer = document.getElementById('lang-announcer');
+
+  function applyLanguage(lang) {
+    const dict = I18N[lang];
+    if (!dict) return;
+
+    document.querySelectorAll('[data-i18n]').forEach((el) => {
+      const key = el.getAttribute('data-i18n');
+      if (Object.hasOwn(dict, key)) el.textContent = dict[key];
+    });
+    document.querySelectorAll('[data-i18n-aria]').forEach((el) => {
+      const key = el.getAttribute('data-i18n-aria');
+      if (Object.hasOwn(dict, key)) el.setAttribute('aria-label', dict[key]);
+    });
+
+    document.documentElement.lang = lang === 'es' ? 'es' : 'en-GB';
+    if (Object.hasOwn(dict, 'meta.title')) document.title = dict['meta.title'];
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription && Object.hasOwn(dict, 'meta.description')) {
+      metaDescription.setAttribute('content', dict['meta.description']);
+    }
+
+    langButtons.forEach((btn) => {
+      btn.setAttribute('aria-pressed', String(btn.getAttribute('data-lang-btn') === lang));
+    });
+  }
+
+  function setLanguage(lang) {
+    applyLanguage(lang);
+    writeStoredLang(lang);
+
+    try {
+      const url = new URL(window.location.href);
+      url.searchParams.set('lang', lang);
+      window.history.replaceState(null, '', url);
+    } catch (e) {
+      // history/URL no disponibles (p.ej. file://): el idioma sigue cambiando igualmente.
+    }
+
+    if (announcer) announcer.textContent = I18N[lang]['langSwitch.announced'];
+  }
+
+  langButtons.forEach((btn) => {
+    btn.addEventListener('click', () => setLanguage(btn.getAttribute('data-lang-btn')));
+  });
+
+  // Carga inicial: no persiste en localStorage ni toca la URL ni anuncia nada,
+  // solo pinta el idioma resuelto. Solo un cambio explícito del usuario hace eso.
+  applyLanguage(resolveInitialLanguage());
+})();
+</script>
 <script src="main.js"></script>
 </body>
 </html>
