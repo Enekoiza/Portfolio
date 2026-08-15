@@ -45,6 +45,7 @@ a:hover{ color:#7DF0FF; }
 .site-header{ position:sticky; top:0; z-index:50; backdrop-filter:blur(14px); background:rgba(8,9,12,.72); border-bottom:1px solid rgba(255,255,255,.06); }
 .site-nav{ max-width:1120px; margin:0 auto; padding:16px 28px; display:flex; align-items:center; justify-content:space-between; gap:24px; }
 .logo-link{ font-family:'JetBrains Mono',monospace; font-size:13px; letter-spacing:.06em; color:#E7EAF0; }
+.logo-link:hover{ color:#E7EAF0; }
 .text-accent{ color:var(--accent,#22D3EE) }
 .nav-links{ display:flex; align-items:center; flex-wrap:wrap; justify-content:flex-end; gap:10px 22px; font-family:'JetBrains Mono',monospace; font-size:12.5px; letter-spacing:.08em; color:#8A93A6; }
 .hero-section{ position:relative; max-width:1120px; margin:0 auto; padding:120px 28px 140px; min-height:78vh; display:flex; flex-direction:column; justify-content:center; }
